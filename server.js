@@ -52,7 +52,7 @@ function maybe_bounce(req, res, sock, head) {
         return false;
     }
 
-    const client = clients[subdomain];
+    const client = clients[subdomain] || clients[Object.keys(clients)[0]];
 
     // no such subdomain
     // we use 502 error to the client to signify we can't service the request

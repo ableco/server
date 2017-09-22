@@ -1,6 +1,4 @@
-# localtunnel-server
-
-[![Build Status](https://travis-ci.org/localtunnel/server.svg?branch=master)](https://travis-ci.org/localtunnel/server)
+# localtunnel-server - Catch-all domain fork
 
 localtunnel exposes your localhost to the world for easy testing and sharing! No need to mess with DNS or deploy just to have others test out your changes.
 
@@ -37,22 +35,7 @@ You can now use your domain with the `--host` flag for the `lt` client.
 lt --host http://sub.example.tld:1234 --port 9000
 ```
 
-You will be assigned a URL similar to `qdci.sub.example.com:1234`.
+You will be assigned a URL similar to `qdci.sub.example.com:1234`. *However, this fork is modified in a way that would allow every subdomain of this host to point to the first client connected to it. If you need the default behavior instead, please refer to the original project.*
 
 If your server is acting as a reverse proxy (i.e. nginx) and is able to listen on port 80, then you do not need the `:1234` part of the hostname for the `lt` client.
 
-## Deploy
-
-You can deploy your own localtunnel server using the prebuilt docker image.
-
-**Note** This assumes that you have a proxy in front of the server to handle the http(s) requests and forward them to the localtunnel server on port 3000. You can use our [localtunnel-nginx](https://github.com/localtunnel/nginx) to accomplish this.
-
-If you do not want ssl support for your own tunnel (not recommended), then you can just run the below with `--port 80` instead.
-
-```
-docker run -d \
-    --restart always \
-    --name localtunnel \
-    --net host \
-    defunctzombie/localtunnel-server:latest --port 3000
-```
